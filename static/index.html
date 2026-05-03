@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://maps.googleapis.com; frame-src https://maps.google.com https://www.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://maps.googleapis.com; frame-src https://maps.google.com https://www.google.com https://www.youtube.com;">
     <title>India Voter Education Assistant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -72,11 +72,11 @@
     <!-- Navigation -->
     <nav class="bg-white shadow-sm sticky top-0 z-10">
         <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-center sm:justify-start">
-                <button onclick="showTab('chat')" id="tab-chat" class="tab-btn active px-4 py-3 sm:px-6 hover:bg-gray-50 transition">💬 Chat Assistant</button>
-                <button onclick="showTab('maps')" id="tab-maps" class="tab-btn px-4 py-3 sm:px-6 hover:bg-gray-50 transition">🗺️ Find Polling Station</button>
-                <button onclick="showTab('calendar')" id="tab-calendar" class="tab-btn px-4 py-3 sm:px-6 hover:bg-gray-50 transition">📅 Election Calendar</button>
-                <button onclick="showTab('guide')" id="tab-guide" class="tab-btn px-4 py-3 sm:px-6 hover:bg-gray-50 transition">📚 Voter Guide</button>
+            <div class="flex flex-wrap justify-center sm:justify-start" role="tablist" aria-label="Main Navigation">
+                <button onclick="showTab('chat')" id="tab-chat" role="tab" aria-selected="true" aria-controls="content-chat" class="tab-btn active px-4 py-3 sm:px-6 hover:bg-gray-50 transition">💬 Chat Assistant</button>
+                <button onclick="showTab('maps')" id="tab-maps" role="tab" aria-selected="false" aria-controls="content-maps" class="tab-btn px-4 py-3 sm:px-6 hover:bg-gray-50 transition">🗺️ Find Polling Station</button>
+                <button onclick="showTab('calendar')" id="tab-calendar" role="tab" aria-selected="false" aria-controls="content-calendar" class="tab-btn px-4 py-3 sm:px-6 hover:bg-gray-50 transition">📅 Election Calendar</button>
+                <button onclick="showTab('guide')" id="tab-guide" role="tab" aria-selected="false" aria-controls="content-guide" class="tab-btn px-4 py-3 sm:px-6 hover:bg-gray-50 transition">📚 Voter Guide</button>
             </div>
         </div>
     </nav>
@@ -225,13 +225,16 @@
                         <span id="icon-acc2" class="text-saffron font-bold text-xl transition-transform">+</span>
                     </button>
                     <div id="content-acc2" class="hidden px-6 py-4 border-t border-gray-100 bg-gray-50 text-gray-700">
-                        <ul class="list-disc pl-5 space-y-2">
+                        <ul class="list-disc pl-5 space-y-2 mb-4">
                             <li><strong>EVM (Electronic Voting Machine):</strong> A secure device used to cast votes electronically, replacing paper ballots.</li>
                             <li><strong>How to use:</strong> Press the blue button next to the name and symbol of your chosen candidate. A red light will glow, and you will hear a long beep confirming your vote.</li>
                             <li><strong>VVPAT (Voter Verifiable Paper Audit Trail):</strong> An independent verification system attached to the EVM.</li>
                             <li><strong>How VVPAT works:</strong> After you press the button, a paper slip containing the serial number, name, and symbol of the candidate is printed and remains visible behind a transparent window for 7 seconds before falling into a sealed drop box.</li>
                             <li><strong>Security:</strong> EVMs are standalone machines, not connected to the internet, making them immune to online hacking.</li>
                         </ul>
+                        <div class="mt-4 bg-gray-200 p-2 rounded-lg" style="aspect-ratio: 16/9;">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/zR7-e4g9oZc" title="How to Vote using EVM-VVPAT" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded"></iframe>
+                        </div>
                     </div>
                 </div>
 
