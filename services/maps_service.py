@@ -15,7 +15,7 @@ async def find_polling_stations(lat: float, lng: float) -> list:
             # Search for polling booths
             params_booth = {
                 "location": f"{lat},{lng}",
-                "radius": 5000,
+                "radius": 10000,
                 "keyword": "polling booth",
                 "key": API_KEY
             }
@@ -27,7 +27,7 @@ async def find_polling_stations(lat: float, lng: float) -> list:
             # Search for election offices
             params_office = {
                 "location": f"{lat},{lng}",
-                "radius": 5000,
+                "radius": 10000,
                 "keyword": "election office",
                 "key": API_KEY
             }
@@ -74,12 +74,24 @@ async def geocode_address(address: str) -> dict:
             
             if data.get("status") == "OK" and len(data.get("results", [])) > 0:
                 result = data["results"][0]
+                
+                # Check if the geocoded address is in India
+                is_india = False
+                for component in result.get("address_components", []):
+                    if "country" in component.get("types", []) and component.get("short_name") == "IN":
+                        is_india = True
+                        break
+                        
+                if not is_india:
+                    return {"error": "Please enter a valid location or address within India."}
+
                 return {
                     "lat": result["geometry"]["location"]["lat"],
                     "lng": result["geometry"]["location"]["lng"],
                     "formatted_address": result["formatted_address"]
                 }
             else:
-                return {"error": "Address not found"}
+                error_msg = data.get("error_message", data.get("status", "Address not found"))
+                return {"error": f"Maps API Error: {error_msg}"}
     except Exception as e:
         return {"error": f"Geocoding error: {str(e)}"}

@@ -25,7 +25,15 @@ async def get_elections(address: str) -> dict:
                 
             data = response.json()
             if "elections" in data and len(data["elections"]) > 0:
-                return data
+                # The Civic API often returns US elections by default.
+                # Let's filter to see if there are any that are NOT in the US, 
+                # or just return fallback if it's all US data and user is querying India.
+                non_us_elections = [e for e in data["elections"] if "ocd-division/country:us" not in e.get("ocdDivisionId", "")]
+                
+                if non_us_elections:
+                    return {"elections": non_us_elections}
+                else:
+                    return FALLBACK_RESPONSE
             else:
                 return FALLBACK_RESPONSE
     except Exception:

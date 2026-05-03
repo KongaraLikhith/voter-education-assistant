@@ -25,7 +25,7 @@ async def get_gemini_response(message: str, history: list) -> str:
         return "Gemini API key is not configured. Please set the GEMINI_API_KEY environment variable."
     
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=SYSTEM_PROMPT)
+        model = genai.GenerativeModel('gemini-2.5-flash', system_instruction=SYSTEM_PROMPT)
         
         formatted_history = []
         for msg in history:
