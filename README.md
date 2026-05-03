@@ -15,14 +15,14 @@ User (Browser)
    │                       v
    └── [REST API] ──> FastAPI Backend (Python)
                            │
-                           ├──> Gemini AI (gemini-1.5-flash)
+                           ├──> Gemini AI (gemini-2.5-flash)
                            ├──> Google Maps API (Places & Geocoding)
                            ├──> Google Civic Information API
                            └──> Google Calendar Links
 ```
 
 ## Google Services Used
-- **Gemini AI (gemini-1.5-flash):** Powers the conversational chat assistant.
+- **Gemini AI (gemini-2.5-flash):** Powers the conversational chat assistant.
 - **Google Maps JavaScript API:** Interactive map showing nearby polling stations.
 - **Google Places API:** Finds polling booths near the user's location.
 - **Google Civic Information API:** Fetches election data, voter info, and representatives.
@@ -114,7 +114,7 @@ gcloud run deploy voter-education-assistant \
 ## Assumptions Made
 - The Google Civic API provides coverage or fallback for the regions queried. In India, coverage may be limited, so fallback mechanisms are built in.
 - Google Maps API key provided has both Geocoding and Places API enabled.
-- For finding polling booths, a radius of 5km around the user location is appropriate.
+- For finding polling booths, a radius of 10km around the user location is appropriate.
 - User interface should be accessible and visually clear via a single-page app structure without heavy framework overhead.
 
 ## Future Improvements
